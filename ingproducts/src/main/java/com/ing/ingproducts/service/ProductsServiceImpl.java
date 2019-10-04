@@ -31,10 +31,10 @@ public class ProductsServiceImpl implements ProductsService {
 
 		Optional<List<Product>> optionalfindByCategoryProductId = productRepository.findAllByProductCategoryId(categoryId);
 		List<ProductsDTO> productsDTODTOList = new ArrayList<>();
-		List<Product> productList=optionalfindByCategoryProductId.get();
 		if (!optionalfindByCategoryProductId.isPresent()) {
 			throw new ProductsNotFoundException("products not found");
 		}
+		List<Product> productList=optionalfindByCategoryProductId.get();
 		productList.forEach(product -> {
 			ProductsDTO productsDTO = new ProductsDTO();
 			productsDTO.setProductId(product.getProductId());
