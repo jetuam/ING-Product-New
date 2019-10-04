@@ -9,11 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import com.ing.ingproducts.entity.Product;
 
-
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-	@Query(value = "SELECT P FROM Product P WHERE P.category.categoryId=:categoryId" )
+	@Query(value = "SELECT P FROM Product P WHERE P.category.categoryId=:categoryId")
 	List<Product> findAllByProductCategoryId(@Param("categoryId") Integer categoryId);
-	
+
 }

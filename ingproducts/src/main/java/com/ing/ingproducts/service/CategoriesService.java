@@ -1,9 +1,8 @@
 package com.ing.ingproducts.service;
 
-import java.util.List;
-
-import org.junit.experimental.categories.Categories;
+import com.ing.ingproducts.dto.CategoryResponseDto;
 
 public interface CategoriesService {
- public void getCategoryDetails();
+
+	public CategoryResponseDto getCategoryDetails();
 }

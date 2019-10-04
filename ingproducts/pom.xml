@@ -17,6 +17,13 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		<sonar.exclusions>
+        	**/dto/*.java,
+        	**/entity/*.java,
+        	**/config/*.java,
+        	**/exception/*.java,
+        	**/repository/*.java
+    	</sonar.exclusions>
 	</properties>
 
 	<dependencies>
@@ -48,6 +55,12 @@
 			<version>0.8.3</version>
 		</dependency>
 		<dependency>
+		    <groupId>org.codehaus.mojo</groupId>
+		    <artifactId>sonar-maven-plugin</artifactId>
+		    <version>3.6.0.1398</version>
+		    <type>pom</type>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
@@ -62,6 +75,17 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.12</version>
+		</dependency>
+		<!-- excel 2007 over -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.12</version>
 		</dependency>
 	</dependencies>
 

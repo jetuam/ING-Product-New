@@ -9,10 +9,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ing.ingproducts.constants.IngproductsConstants;
 import com.ing.ingproducts.dto.ProductsDTO;
 import com.ing.ingproducts.dto.ProductsResponseDTO;
 import com.ing.ingproducts.entity.Product;
-import com.ing.ingproducts.repository.CategoryRepository;
 import com.ing.ingproducts.repository.ProductRepository;
 
 /**
@@ -21,30 +21,13 @@ import com.ing.ingproducts.repository.ProductRepository;
  */
 @Service
 public class ProductsServiceImpl implements ProductsService {
-
-	@Autowired
-	CategoryRepository categoryRepository;
 	@Autowired
 	ProductRepository productRepository;
 
 	@Override
 	public ProductsResponseDTO showProducts(Integer categoryId) {
-		/*
-		 * Optional<Category> findById =
-		 * categoryRepository.findById(categoryId.longValue()); if
-		 * (!findById.isPresent()) { throw new
-		 * ProductsNotFoundException("category not found"); }
-		 */
-		// List<Product> productList = findById.get().getProductList();
 
-		List<Product> findByCategoryProductId = productRepository
-				.findAllByProductCategoryId(categoryId);
-		/*
-		 * if (!findByCategoryProductId.isPresent()) { throw new
-		 * ProductsNotFoundException("products not found"); }
-		 */
-
-		// List<Product> productList = findByCategoryProductId.get();
+		List<Product> findByCategoryProductId = productRepository.findAllByProductCategoryId(categoryId);
 		List<ProductsDTO> productsDTODTOList = new ArrayList<>();
 
 		findByCategoryProductId.forEach(product -> {
@@ -56,8 +39,8 @@ public class ProductsServiceImpl implements ProductsService {
 		});
 		ProductsResponseDTO productsResponseDTO = new ProductsResponseDTO();
 		productsResponseDTO.setProductsDTO(productsDTODTOList);
-		productsResponseDTO.setStatusCode(200);
-		productsResponseDTO.setStatusMessage("success");
+		productsResponseDTO.setStatusCode(IngproductsConstants.PROUD_GET_STATUS_CODE);
+		productsResponseDTO.setStatusMessage(IngproductsConstants.PRODUCT_SUCCESS_STATUS_MSG);
 		return productsResponseDTO;
 	}
 
