@@ -5,6 +5,7 @@ package com.ing.ingproducts.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,10 +42,10 @@ public class ProductsServiceImplTest {
 		product.setProductName("debit cards");
 		product.setCategory(category);
 		product.setProductDescription("debit card related info");
-		List<Product> productList = new ArrayList<>();
+		List<Product> productList = new ArrayList<>();		
 		productList.add(product);
-
-		Mockito.when(productRepository.findAllByProductCategoryId(1)).thenReturn(productList);
+		Optional<List<Product>> optionalList=Optional.of(productList);
+		Mockito.when(productRepository.findAllByProductCategoryId(1)).thenReturn(optionalList);
 		ProductsResponseDTO showProducts = productsServiceImpl.showProducts(1);
 
 		Assert.assertNotNull(showProducts);

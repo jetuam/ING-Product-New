@@ -40,7 +40,7 @@ public class UploadServiceImpl implements UploadService {
 			String currCatcell = currentRow.getCell(1).getStringCellValue().trim();
 			String prodCell = currentRow.getCell(2).getStringCellValue();
 			String prodDescCell = currentRow.getCell(3).getStringCellValue();
-			if (!currCatcell.equalsIgnoreCase("categoryName")) {
+			if (!currCatcell.equalsIgnoreCase("Category Name")) {
 				if (!prevCatCell.equalsIgnoreCase(currCatcell)) {
 					Category category = new Category();
 					category.setCategoryName(currCatcell);
@@ -52,6 +52,7 @@ public class UploadServiceImpl implements UploadService {
 				product.setProductDescription(prodDescCell);
 				product.setCategory(category2);
 				productRepository.save(product);
+				prevCatCell=currCatcell;
 			}
 		}
 		responseDto.setMessage("File has been uploaded successfully!");
